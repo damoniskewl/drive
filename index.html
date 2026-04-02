@@ -1,0 +1,1038 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Drive | Social Media Marketing Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --lime: #CCFF00;
+    --pink: #FF6EC7;
+    --cyan: #00F5FF;
+    --orange: #FF6B35;
+    --purple: #B24BF3;
+    --yellow: #FFE600;
+    --black: #0A0A0A;
+    --white: #FAFAF5;
+    --glass: rgba(255,255,255,0.07);
+    --border: rgba(255,255,255,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-logo img {
+    height: 36px;
+    width: auto;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: rgba(250,250,245,0.6);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--lime); }
+
+  .nav-cta {
+    background: var(--lime);
+    color: var(--black) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 999px;
+    font-weight: 700 !important;
+    transition: transform 0.15s, background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--pink) !important; color: var(--white) !important; transform: scale(1.04); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero-bg-blobs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.18;
+  }
+
+  .blob-1 { width: 500px; height: 500px; background: var(--purple); top: -100px; left: -150px; }
+  .blob-2 { width: 400px; height: 400px; background: var(--pink); top: 100px; right: -100px; }
+  .blob-3 { width: 350px; height: 350px; background: var(--cyan); bottom: 0; left: 30%; }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--lime);
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title .line-1 { color: var(--white); }
+  .hero-title .line-2 { color: var(--lime); -webkit-text-stroke: 2px var(--lime); }
+  .hero-title .line-3 { color: transparent; -webkit-text-stroke: 2px var(--white); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(250,250,245,0.55);
+    max-width: 520px;
+    line-height: 1.7;
+    margin: 2rem auto 2.5rem;
+  }
+
+  .hero-sub strong { color: var(--pink); font-weight: 500; }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--lime);
+    color: var(--black);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--pink); color: var(--white); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--lime);
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(250,250,245,0.4);
+    margin-top: 0.3rem;
+  }
+
+  /* MARQUEE */
+  .marquee-section {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--lime);
+    padding: 0.9rem 0;
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    animation: marquee 18s linear infinite;
+    white-space: nowrap;
+  }
+
+  .marquee-track span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--black);
+    padding: 0 2.5rem;
+    flex-shrink: 0;
+  }
+
+  .marquee-track span.dot {
+    color: var(--pink);
+    padding: 0;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+  .section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--pink);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 1rem;
+  }
+
+  /* HOW IT WORKS */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .step-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem 1.8rem;
+    position: relative;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .step-card:hover { border-color: var(--lime); transform: translateY(-4px); }
+
+  .step-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--lime);
+    opacity: 0.2;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+  }
+
+  .step-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .step-card h3 {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+
+  .step-card p {
+    font-size: 0.9rem;
+    color: rgba(250,250,245,0.5);
+    line-height: 1.6;
+  }
+
+  /* WHY DRIVE */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .why-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.2rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .why-card:hover { border-color: var(--pink); transform: translateY(-3px); }
+
+  .why-card.accent {
+    background: var(--lime);
+    border-color: var(--lime);
+    grid-column: span 2;
+  }
+
+  .why-card.accent h3, .why-card.accent p { color: var(--black); }
+
+  .why-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--white);
+  }
+
+  .why-card p {
+    font-size: 0.92rem;
+    color: rgba(250,250,245,0.5);
+    line-height: 1.6;
+  }
+
+  .why-card .tag-pill {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    background: rgba(255,255,255,0.1);
+    color: var(--lime);
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+
+  .why-card.accent .tag-pill {
+    background: rgba(0,0,0,0.15);
+    color: var(--black);
+  }
+
+  /* ABOUT */
+  .about-section {
+    text-align: center;
+  }
+
+  .about-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 3.5rem 2.5rem;
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    text-align: left;
+  }
+
+  .about-avatar {
+    flex-shrink: 0;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--lime);
+  }
+
+  .about-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-info h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .about-info .about-role {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--lime);
+    margin-bottom: 1rem;
+  }
+
+  .about-info p {
+    font-size: 0.95rem;
+    color: rgba(250,250,245,0.55);
+    line-height: 1.7;
+    max-width: 500px;
+  }
+
+  @media (max-width: 768px) {
+    .about-card {
+      flex-direction: column;
+      text-align: center;
+    }
+    .about-info p {
+      max-width: 100%;
+    }
+  }
+
+  /* FAQ */
+  .faq-section {
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    max-width: 100%;
+  }
+
+  .faq-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+
+  .faq-list {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .faq-item:hover { border-color: rgba(255,255,255,0.3); }
+
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1.5rem 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .faq-question span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .faq-icon {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.4rem;
+    color: var(--lime);
+    flex-shrink: 0;
+    transition: transform 0.3s;
+    font-weight: 400;
+  }
+
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+  }
+
+  .faq-item.open .faq-answer { max-height: 300px; }
+
+  .faq-answer p {
+    padding: 0 1.8rem 1.5rem;
+    font-size: 0.95rem;
+    color: rgba(250,250,245,0.55);
+    line-height: 1.7;
+  }
+
+  .faq-answer a { color: var(--lime); text-decoration: none; }
+  .faq-answer a:hover { text-decoration: underline; }
+
+  /* BOOKING */
+  .booking-section {
+    text-align: center;
+  }
+
+  .booking-card {
+    background: linear-gradient(135deg, rgba(204,255,0,0.06), rgba(255,110,199,0.06));
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 5rem 3rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .booking-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: var(--purple);
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.12;
+  }
+
+  .booking-card::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 250px; height: 250px;
+    background: var(--cyan);
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.1;
+  }
+
+  .booking-card h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
+  }
+
+  .booking-card h2 span { color: var(--lime); }
+
+  .booking-card p {
+    color: rgba(250,250,245,0.5);
+    font-size: 1rem;
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .booking-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .booking-form input,
+  .booking-form select,
+  .booking-form textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .booking-form select option { background: #1a1a1a; }
+
+  .booking-form input::placeholder,
+  .booking-form textarea::placeholder { color: rgba(255,255,255,0.3); }
+
+  .booking-form input:focus,
+  .booking-form select:focus,
+  .booking-form textarea:focus { border-color: var(--lime); }
+
+  .booking-form textarea { min-height: 100px; resize: vertical; }
+
+  .btn-book {
+    background: var(--lime);
+    color: var(--black);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1.1rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    width: 100%;
+  }
+
+  .btn-book:hover { background: var(--pink); color: var(--white); transform: translateY(-2px); }
+
+  .booking-or {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.3);
+    margin: 1.5rem 0 0;
+  }
+
+  .booking-email {
+    color: var(--cyan);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    text-decoration: none;
+    display: block;
+    margin-top: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .booking-email:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .footer-logo img {
+    height: 30px;
+    width: auto;
+  }
+
+  .footer-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: rgba(250,250,245,0.3);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  .footer-email {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--pink);
+    text-decoration: none;
+  }
+
+  .footer-email:hover { color: var(--lime); }
+
+
+  /* DIVIDER DECO */
+  .deco-divider {
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 4px;
+    padding: 0 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .why-grid { grid-template-columns: 1fr; }
+    .why-card.accent { grid-column: span 1; }
+    .booking-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><img src="DRIVE-NEW-LOGO.png" alt="Drive" /></a>
+  <ul class="nav-links">
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#why">Why Drive</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#book" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="max-width:100%; padding-top:8rem;">
+  <div class="hero-bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="hero-eyebrow">Converting views to app downloads</div>
+
+  <h1 class="hero-title">
+    <span class="line-2">Let's</span><br>
+    <span class="line-1">Drive.</span>
+  </h1>
+
+  <p class="hero-sub">
+    We find creators who already know the algorithm and match them to your app's vibe. They post on <strong>fresh accounts built around your niche</strong>, so every piece of content hits the right audience.
+  </p>
+
+  <div class="hero-btns">
+    <a href="#book" class="btn-primary">Book a Meeting →</a>
+    <a href="#how-it-works" class="btn-outline">See How It Works</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">10x</div>
+      <div class="stat-label">Lower Cost Per Install</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">V→D</div>
+      <div class="stat-label">Views to Downloads</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Content Working For You</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span>App Growth</span><span class="dot">·</span>
+    <span>Experienced Creators</span><span class="dot">·</span>
+    <span>Real Downloads</span><span class="dot">·</span>
+    <span>Niche-Matched Content</span><span class="dot">·</span>
+    <span>Maximum Impressions</span><span class="dot">·</span>
+    <span>Lower Cost</span><span class="dot">·</span>
+    <span>Algorithm Experts</span><span class="dot">·</span>
+    <span>App Growth</span><span class="dot">·</span>
+    <span>Experienced Creators</span><span class="dot">·</span>
+    <span>Real Downloads</span><span class="dot">·</span>
+    <span>Niche-Matched Content</span><span class="dot">·</span>
+    <span>Maximum Impressions</span><span class="dot">·</span>
+    <span>Lower Cost</span><span class="dot">·</span>
+    <span>Algorithm Experts</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="section-tag">// Process</div>
+  <h2 class="section-title">How Drive Works</h2>
+  <p style="color:rgba(250,250,245,0.5); font-size:1rem; max-width:520px; line-height:1.7;">
+    Experienced creators, fresh accounts, content that fits your app. We handle the full pipeline from matching to downloads.
+  </p>
+
+  <div class="steps">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-icon">🚀</div>
+      <h3>Find the Right Creators</h3>
+      <p>We source creators who already have experience with the algorithm and match them to your app's niche. Each creator gets a fresh account built specifically around your app's vibe.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-icon">📱</div>
+      <h3>Post Consistently</h3>
+      <p>Our creators post daily content that feels native to your app's audience. They know what the algorithm rewards and they keep the content consistent so the accounts keep growing.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-icon">📈</div>
+      <h3>Maximize Impressions</h3>
+      <p>We track performance in real-time and double down on what works. Every piece of content is optimized to push your app in front of the right audience.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-icon">📲</div>
+      <h3>Convert to Downloads</h3>
+      <p>Views mean nothing without installs. We optimize every step of the funnel, from first impression to app store tap, so you see real results.</p>
+    </div>
+  </div>
+</section>
+
+<div class="deco-divider">· · · · · · · · · · · · · · · · · · · ·</div>
+
+<!-- WHY DRIVE -->
+<section id="why">
+  <div class="section-tag">// Why Us</div>
+  <h2 class="section-title">Why Drive Wins</h2>
+
+  <div class="why-grid">
+    <div class="why-card accent">
+      <div class="tag-pill">Our Edge</div>
+      <h3>Cheaper Than Influencers. Better Results.</h3>
+      <p>Instead of paying one influencer thousands for a single post, we match experienced creators to your app's niche and have them run dedicated accounts. More content, more impressions, and more downloads for less money.</p>
+    </div>
+    <div class="why-card">
+      <div class="tag-pill" style="color:var(--cyan);">Strategy</div>
+      <h3>Creators Who Know the Algorithm</h3>
+      <p>We don't hire random influencers. We find creators with real experience growing accounts on TikTok and Instagram, then match them to your app's specific niche so every post feels authentic.</p>
+    </div>
+    <div class="why-card">
+      <div class="tag-pill" style="color:var(--purple);">Results</div>
+      <h3>Downloads Are the Only KPI</h3>
+      <p>We don't report on vanity metrics. Every decision, from content style to posting schedule, is made to drive real installs for your app.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-section">
+  <div class="section-tag">// About Us</div>
+  <h2 class="section-title">The Person Behind Drive</h2>
+
+  <div class="about-card">
+    <div class="about-avatar"><img src="best-pic-eva.png" alt="Damon Eastman" /></div>
+    <div class="about-info">
+      <h3>Damon Eastman</h3>
+      <div class="about-role">Founder & CEO</div>
+      <p>Creating Drive came from seeing real problems in the space. I noticed that many agencies don't fully maximize opportunities, communication is weak, and creators aren't motivated to stay involved. That led to creators dropping out, campaigns falling, and money being lost. I wanted to build something that solves these issues. Something that works better for creators, but most importantly, for apps that need real, scalable growth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<div class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div class="section-tag">// FAQ</div>
+    <h2 class="section-title">Got Questions?</h2>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What does pricing look like?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Campaigns start at <strong style="color:var(--lime);">$3,000/month</strong>, which is way less than hiring an influencer for a single post. Pricing depends on the number of accounts, content volume, and campaign length. <a href="#book">Book a call</a> for a custom quote.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>What kind of apps do you work with?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Consumer apps, utility apps, lifestyle, gaming, social platforms. If your app has a clear audience, we can build a campaign that drives real installs.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>How long until I see results?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Content starts going live within the first week. Meaningful download data usually comes within 30 days. We recommend a minimum of 60 days to fully optimize and see strong conversion trends.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Do I need to be involved day-to-day?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>No. We handle everything: finding the right creators, setting up accounts tailored to your niche, content creation, posting, and performance tracking. You get full visibility and a point of contact, but we run the campaign so you can focus on your product.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING -->
+<section id="book" class="booking-section" style="max-width:900px;">
+  <div class="section-tag">// Let's Talk</div>
+  <h2 class="section-title">Ready to Drive<br>Downloads?</h2>
+
+  <div class="booking-card">
+    <h2>Book a <span>Meeting</span></h2>
+    <p>Tell us about your app and we'll walk you through how Drive can get you real downloads. No fluff, just a real conversation.</p>
+
+    <form class="booking-form" id="bookingForm">
+      <div class="booking-row">
+        <input type="text" placeholder="Your Name" id="nameInput" required />
+        <input type="email" placeholder="Email Address" id="emailInput" required />
+      </div>
+      <input type="text" placeholder="Company / App Name" id="companyInput" required />
+      <select id="budgetInput">
+        <option value="" disabled selected>Monthly Budget</option>
+        <option>$3,000 – $5,000</option>
+        <option>$5,000 – $10,000</option>
+        <option>$10,000 – $25,000</option>
+        <option>$25,000+</option>
+        <option>Not sure yet</option>
+      </select>
+      <textarea placeholder="Tell us about your app and goals..." id="messageInput"></textarea>
+      <button type="button" class="btn-book" onclick="sendEmail()">Request a Meeting →</button>
+    </form>
+
+    <p class="booking-or">or email us directly</p>
+    <a href="mailto:outreach@withdrive.xyz" class="booking-email">outreach@withdrive.xyz</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo"><img src="DRIVE-NEW-LOGO.png" alt="Drive" /></a>
+  <p class="footer-copy">Ready to Drive?</p>
+  <a href="mailto:outreach@withdrive.xyz" class="footer-email">outreach@withdrive.xyz</a>
+</footer>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+function sendEmail() {
+  const name = document.getElementById('nameInput').value.trim();
+  const email = document.getElementById('emailInput').value.trim();
+  const company = document.getElementById('companyInput').value.trim();
+  const budget = document.getElementById('budgetInput').value;
+  const message = document.getElementById('messageInput').value.trim();
+
+  if (!name || !email || !company) {
+    alert('Please fill in your name, email, and company before submitting.');
+    return;
+  }
+
+  const subject = encodeURIComponent('Meeting Request - ' + company);
+  const body = encodeURIComponent(
+    'Hi Drive Team,\n\n' +
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Company / App: ' + company + '\n' +
+    'Monthly Budget: ' + (budget || 'Not specified') + '\n\n' +
+    'Message:\n' + (message || 'No message provided.') + '\n\n' +
+    'Looking forward to connecting!'
+  );
+
+  window.location.href = 'mailto:outreach@withdrive.xyz?subject=' + subject + '&body=' + body;
+}
+</script>
+
+</body>
+</html>
